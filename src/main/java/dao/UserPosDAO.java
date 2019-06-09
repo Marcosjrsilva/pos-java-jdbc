@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import canexaojdbc.SingleConnection;
 import model.Userposjava;
 
@@ -19,7 +17,7 @@ public class UserPosDAO {
 	public UserPosDAO() {
 		connection = SingleConnection.getConnection();
 	}
-	
+		
 	public void salvar (Userposjava userposjava) {
 		try {
 			String sql = "insert  into userposjava (id, nome, email) values (?,?,?)";
@@ -40,7 +38,7 @@ public class UserPosDAO {
 		}
 	}
 	
-	public List<Userposjava> Listar () throws Exception{
+	public List<Userposjava> listar() throws Exception{
 		List<Userposjava> list = new ArrayList<Userposjava>();
 		
 		String sql = "select * from userposjava";
@@ -53,6 +51,8 @@ public class UserPosDAO {
 			userposjava.setId(resultado.getLong("id"));
 			userposjava.setNome(resultado.getString("nome"));
 			userposjava.setEmail(resultado.getString("email"));
+			
+			list.add(userposjava);
 		}
 		
 		return list;
